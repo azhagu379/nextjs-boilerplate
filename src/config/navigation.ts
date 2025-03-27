@@ -1,6 +1,5 @@
-// src/config/navigation.ts
-import React from 'react';
-import type { Navigation } from '@toolpad/core/AppProvider'; // Import the type
+// src/config/navigation.tsx
+import React from 'react'; // Needed for JSX icons
 
 // Import Lucide icons
 import {
@@ -12,51 +11,25 @@ import {
   User,
 } from 'lucide-react';
 
-export const APP_NAVIGATION: Navigation = [
-  {
-    kind: 'header',
-    title: 'Main Menu',
-  },
-  {
-    segment: '', // Corresponds to '/' route usually
-    title: 'Home',
-    icon: React.createElement(Home, { size: 20 }),
-  },
-  {
-    segment: 'courses',
-    title: 'Courses',
-    icon: React.createElement(BookOpen, { size: 20 }),
-    // Example of nested navigation if needed later
-    // children: [
-    //  { segment: 'typescript', title: 'TypeScript', icon: <GitBranch size={18} /> },
-    //  { segment: 'react', title: 'React', icon: <GitBranch size={18} /> },
-    // ]
-  },
-  {
-    segment: 'series',
-    title: 'Series',
-    icon: React.createElement(Tv, { size: 20 }),
-  },
-  {
-    segment: 'browse',
-    title: 'Browse',
-    icon: React.createElement(LayoutGrid, { size: 20 }),
-  },
-  {
-    kind: 'divider',
-  },
-  {
-    kind: 'header',
-    title: 'Account',
-  },
-  {
-    segment: 'profile',
-    title: 'Profile',
-    icon: React.createElement(User, { size: 20 }),
-  },
-  {
-    segment: 'settings',
-    title: 'Settings',
-    icon: React.createElement(Settings, { size: 20 }),
-  },
+// Define drawer width as a constant
+export const drawerWidth = 240;
+
+// Define Navigation Item Type (Optional but good practice)
+export interface NavItem {
+  text: string;
+  icon: React.ReactNode;
+  href: string;
+}
+
+// Define navigation items
+export const mainNavItems: NavItem[] = [
+  { text: 'Home', icon: React.createElement(Home, { size: 20 }), href: '/' },
+  { text: 'Courses', icon: React.createElement(BookOpen, { size: 20 }), href: '/courses' },
+  { text: 'Series', icon: React.createElement(Tv, { size: 20 }), href: '/series' },
+  { text: 'Browse', icon: React.createElement(LayoutGrid, { size: 20 }), href: '/browse' },
+];
+
+export const secondaryNavItems: NavItem[] = [
+  { text: 'Profile', icon: React.createElement(User, { size: 20 }), href: '/profile' },
+  { text: 'Settings', icon: React.createElement(Settings, { size: 20 }), href: '/settings' },
 ];
