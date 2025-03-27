@@ -64,7 +64,6 @@ export function TopAppBar({ open, handleDrawerOpen, title }: TopAppBarProps) {
 
   const { isAuthenticated, mockLogout } = useAuth(); // Get auth status and mock logout
 
-
   // State for the profile menu anchor
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
 
@@ -90,14 +89,16 @@ export function TopAppBar({ open, handleDrawerOpen, title }: TopAppBarProps) {
     <AppBar position="fixed" open={open} enableColorOnDark>
       <Toolbar>
         {/* Menu Icon (Only show if user is authenticated and inside app layout) */}
-        {isAuthenticated && ( // Conditionally render the menu toggle
-             <IconButton
-                color="inherit" aria-label="open drawer" onClick={handleDrawerOpen} edge="start"
-                sx={{ marginRight: 5, ...(open && { display: 'none' }) }}
-              >
-                <MenuIcon />
-             </IconButton>
-        )}
+        {
+          <IconButton
+            color="inherit"
+            aria-label="open drawer"
+            onClick={handleDrawerOpen}
+            edge="start"
+            sx={{ marginRight: 5, ...(open && { display: "none" }) }}>
+            <MenuIcon />
+          </IconButton>
+        }
 
         {/* App Title */}
         <Typography variant="h6" noWrap component="div" sx={{ flexGrow: 1 }}>
@@ -105,10 +106,19 @@ export function TopAppBar({ open, handleDrawerOpen, title }: TopAppBarProps) {
         </Typography>
 
         {/* Theme Toggle Button - Always visible */}
-        <Tooltip title={`Toggle ${currentThemeMode === 'dark' ? 'light' : 'dark'} mode`}>
-           <IconButton sx={{ ml: 1 }} onClick={toggleTheme} color="inherit" aria-label="toggle theme">
-               {currentThemeMode === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
-           </IconButton>
+        <Tooltip
+          title={`Toggle ${currentThemeMode === "dark" ? "light" : "dark"} mode`}>
+          <IconButton
+            sx={{ ml: 1 }}
+            onClick={toggleTheme}
+            color="inherit"
+            aria-label="toggle theme">
+            {currentThemeMode === "dark" ? (
+              <Sun size={20} />
+            ) : (
+              <Moon size={20} />
+            )}
+          </IconButton>
         </Tooltip>
 
         {/* Conditional Actions: User Menu or Login/Signup */}
@@ -116,56 +126,71 @@ export function TopAppBar({ open, handleDrawerOpen, title }: TopAppBarProps) {
           // --- Authenticated User Actions ---
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open user menu">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0, ml: 1 }} color="inherit">
+              <IconButton
+                onClick={handleOpenUserMenu}
+                sx={{ p: 0, ml: 1 }}
+                color="inherit">
                 <UserIconLucide size={24} />
               </IconButton>
             </Tooltip>
             <Menu
-                sx={{ mt: '45px' }} id="menu-appbar" anchorEl={anchorElUser}
-                anchorOrigin={{ vertical: 'top', horizontal: 'right' }} keepMounted
-                transformOrigin={{ vertical: 'top', horizontal: 'right' }}
-                open={Boolean(anchorElUser)} onClose={handleCloseUserMenu}
-            >
-                 <MenuItem component={Link} href="/profile" onClick={handleCloseUserMenu}>
-                    <ListItemIcon><UserIconLucide size={18} /></ListItemIcon>
-                    Profile
-                 </MenuItem>
-                 <MenuItem component={Link} href="/settings" onClick={handleCloseUserMenu}>
-                    <ListItemIcon><Settings size={18} /></ListItemIcon>
-                    Settings
-                 </MenuItem>
-                 <Divider sx={{ my: 0.5 }}/>
-                 <MenuItem onClick={handleLogout} sx={{ color: 'error.main' }}>
-                     <ListItemIcon><LogOut size={18} color="inherit" /></ListItemIcon>
-                     Logout
-                 </MenuItem>
+              sx={{ mt: "45px" }}
+              id="menu-appbar"
+              anchorEl={anchorElUser}
+              anchorOrigin={{ vertical: "top", horizontal: "right" }}
+              keepMounted
+              transformOrigin={{ vertical: "top", horizontal: "right" }}
+              open={Boolean(anchorElUser)}
+              onClose={handleCloseUserMenu}>
+              <MenuItem
+                component={Link}
+                href="/profile"
+                onClick={handleCloseUserMenu}>
+                <ListItemIcon>
+                  <UserIconLucide size={18} />
+                </ListItemIcon>
+                Profile
+              </MenuItem>
+              <MenuItem
+                component={Link}
+                href="/settings"
+                onClick={handleCloseUserMenu}>
+                <ListItemIcon>
+                  <Settings size={18} />
+                </ListItemIcon>
+                Settings
+              </MenuItem>
+              <Divider sx={{ my: 0.5 }} />
+              <MenuItem onClick={handleLogout} sx={{ color: "error.main" }}>
+                <ListItemIcon>
+                  <LogOut size={18} color="inherit" />
+                </ListItemIcon>
+                Logout
+              </MenuItem>
             </Menu>
           </Box>
         ) : (
           // --- Unauthenticated User Actions ---
           <Box sx={{ flexGrow: 0 }}>
-             <Button
-                color="inherit"
-                startIcon={<LogIn size={18}/>}
-                component={Link}
-                href="/login"
-                sx={{ ml: 1 }}
-             >
-                Login
-             </Button>
-              <Button
-                color="inherit" // Or maybe secondary/primary based on theme contrast
-                variant="outlined" // Make signup slightly different
-                startIcon={<UserPlus size={18}/>}
-                component={Link}
-                href="/signup" // Assuming a signup page route
-                sx={{ ml: 1 }}
-             >
-                Sign Up
-             </Button>
+            <Button
+              color="inherit"
+              startIcon={<LogIn size={18} />}
+              component={Link}
+              href="/login"
+              sx={{ ml: 1 }}>
+              Login
+            </Button>
+            <Button
+              color="inherit" // Or maybe secondary/primary based on theme contrast
+              variant="outlined" // Make signup slightly different
+              startIcon={<UserPlus size={18} />}
+              component={Link}
+              href="/signup" // Assuming a signup page route
+              sx={{ ml: 1 }}>
+              Sign Up
+            </Button>
           </Box>
         )}
-
       </Toolbar>
     </AppBar>
   );

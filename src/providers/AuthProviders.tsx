@@ -3,12 +3,23 @@
 
 import React, { createContext, useState, useContext, useMemo, ReactNode } from 'react';
 
+// Define Roles (Example - match your backend roles)
+type UserRole = 'admin' | 'instructor' | 'student' | 'guest';
+
+// Define a User type for the context
+interface User {
+  id: string;
+  name: string;
+  role: UserRole;
+  // Add email or other fields if needed by your app
+}
+
+
+// --- UPDATE AuthContextType ---
 interface AuthContextType {
   isAuthenticated: boolean;
-  user: { name: string } | null; // Example user object
-  // In a real app, you'd have login/logout functions interacting with your auth service
-  // For now, just a mock toggle for demonstration
-  mockLogin: () => void;
+  user: User | null; // Use the User interface here
+  mockLogin: (role?: UserRole) => void; // Allow passing a role for testing
   mockLogout: () => void;
 }
 
@@ -23,14 +34,16 @@ const AuthContext = createContext<AuthContextType>({
 export const useAuth = () => useContext(AuthContext);
 
 export function AuthProvider({ children }: { children: ReactNode }) {
-  // Mock state - replace with real auth logic later
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [user, setUser] = useState<{ name: string } | null>(null);
+  // --- UPDATE useState ---
+  const [user, setUser] = useState<User | null>(null); // Use the User interface here
 
-  const mockLogin = () => {
+  // --- UPDATE mockLogin ---
+  const mockLogin = (role: UserRole = 'student') => { // Default mock role to student
     setIsAuthenticated(true);
-    setUser({ name: 'Demo User' }); // Set dummy user data
-    console.log('Mock Login Triggered');
+    // Set dummy user data including ID and the specified role
+    setUser({ id: 'user_mock_001', name: 'Demo User', role: role });
+    console.log(`Mock Login Triggered as role: ${role}`);
   };
 
   const mockLogout = () => {
@@ -39,7 +52,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     console.log('Mock Logout Triggered');
   };
 
-  // Memoize context value to prevent unnecessary re-renders
   const value = useMemo(() => ({
     isAuthenticated,
     user,
@@ -50,12 +62,18 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   return (
     <AuthContext.Provider value={value}>
       {children}
-      {/* Add a temporary button to toggle auth state for testing */}
+      {/* Add temporary buttons to toggle auth state/role for testing */}
       {/* Remove this in production */}
-      {/* <div style={{ position: 'fixed', bottom: 10, right: 10, zIndex: 9999 }}>
-         <button onClick={isAuthenticated ? mockLogout : mockLogin}>
-            Toggle Auth (Dev)
-         </button>
+      {/* <div style={{ position: 'fixed', bottom: 10, right: 10, zIndex: 9999, background: 'white', padding: '5px', border: '1px solid black', display:'flex', gap:'5px' }}>
+        {!isAuthenticated ? (
+            <>
+              <button onClick={() => mockLogin('student')}>Login as Student</button>
+              <button onClick={() => mockLogin('instructor')}>Login as Instructor</button>
+              <button onClick={() => mockLogin('admin')}>Login as Admin</button>
+            </>
+        ) : (
+            <button onClick={mockLogout}>Logout</button>
+        )}
       </div> */}
     </AuthContext.Provider>
   );

@@ -109,3 +109,12 @@ export interface Movie extends Omit<VideoContent, 'type'> {
 }
 
 // etc. for Song, Standalone...
+
+// type UserRole = 'admin' | 'instructor' | 'student' | 'guest';
+
+// Define a more complete User type for the context
+// interface UserData {
+//   id: string; // Add other relevant fields later
+//   name: string;
+//   role: UserRole;
+// }

@@ -17,6 +17,7 @@ import {
   mainNavItems,
   secondaryNavItems,
   NavItem,
+  UserRole,
 } from "@/config/navigation";
 
 // Import Auth context hook
@@ -71,36 +72,56 @@ const Drawer = styled(MuiDrawer, {
 }));
 // --- End Styled Components ---
 
-// Helper function to render Navigation List Items
-const renderNavList = (items: NavItem[], open: boolean) => (
-  <List>
-    {items.map((item) => (
-      <ListItem key={item.text} disablePadding sx={{ display: "block" }}>
-        <ListItemButton
-          component={Link}
-          href={item.href}
-          title={item.text} // Add title for tooltip when closed
-          aria-label={item.text}
-          sx={{
-            minHeight: 48,
-            justifyContent: open ? "initial" : "center",
-            px: 2.5,
-          }}>
-          <ListItemIcon
-            sx={{
-              minWidth: 0,
-              mr: open ? 3 : "auto",
-              justifyContent: "center",
-            }}>
-            {item.icon}
-          </ListItemIcon>
-          <ListItemText primary={item.text} sx={{ opacity: open ? 1 : 0 }} />
-        </ListItemButton>
-      </ListItem>
-    ))}
-  </List>
-);
-
+// Helper function to render Navigation List Items// Helper function to render Navigation List Items
+const renderNavList = (
+    items: NavItem[],
+    open: boolean,
+    isAuthenticated: boolean,
+    userRole: UserRole | null
+  ) => {
+    // Filter items based on auth status and role
+    const visibleItems = items.filter((item) => {
+      if (item.public) return true; // Show public items always
+      if (!isAuthenticated) return false; // Hide non-public if not logged in
+      if (!item.roles) return true; // Show if no specific roles are required (to any authenticated user)
+      return userRole && item.roles.includes(userRole); // Show if user has one of the required roles
+    });
+  
+    // Don't render the List component at all if there are no items to show
+    if (visibleItems.length === 0) {
+       return null;
+    }
+  
+    return (
+      <List>
+        {/* FIX: Map over the filtered 'visibleItems' array */}
+        {visibleItems.map((item) => (
+          <ListItem key={item.text} disablePadding sx={{ display: "block" }}>
+            <ListItemButton
+              component={Link}
+              href={item.href}
+              title={item.text} // Add title for tooltip when closed
+              aria-label={item.text}
+              sx={{
+                minHeight: 48,
+                justifyContent: open ? "initial" : "center",
+                px: 2.5,
+              }}>
+              <ListItemIcon
+                sx={{
+                  minWidth: 0,
+                  mr: open ? 3 : "auto",
+                  justifyContent: "center",
+                }}>
+                {item.icon}
+              </ListItemIcon>
+              <ListItemText primary={item.text} sx={{ opacity: open ? 1 : 0 }} />
+            </ListItemButton>
+          </ListItem>
+        ))}
+      </List>
+    );
+  };
 // Props for SideDrawer component
 interface SideDrawerProps {
   open: boolean;
@@ -108,7 +129,8 @@ interface SideDrawerProps {
 }
 
 export function SideDrawer({ open, handleDrawerClose }: SideDrawerProps) {
-  const { isAuthenticated } = useAuth(); // Get authentication status
+  const { isAuthenticated, user } = useAuth(); // Get authentication status
+  const userRole = (user?.role as UserRole | null) ?? "guest";
 
   return (
     <Drawer variant="permanent" open={open}>
@@ -120,13 +142,13 @@ export function SideDrawer({ open, handleDrawerClose }: SideDrawerProps) {
       </DrawerHeader>
       <Divider />
       {/* Main Nav Items - Always visible */}
-      {renderNavList(mainNavItems, open)}
+      {renderNavList(mainNavItems, open, isAuthenticated, userRole)}
 
       {/* Secondary Nav Items - Only visible if authenticated */}
       {isAuthenticated && (
         <>
           <Divider />
-          {renderNavList(secondaryNavItems, open)}
+          {renderNavList(secondaryNavItems, open, isAuthenticated, userRole)}
         </>
       )}
     </Drawer>
