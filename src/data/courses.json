@@ -1,0 +1,66 @@
+[
+    {
+        "id": "course_ts101",
+        "title": "TypeScript Fundamentals",
+        "description": "Learn the basics of TypeScript for robust JavaScript.",
+        "type": "course",
+        "thumbnailUrl": "/thumbnails/ts101.jpg",
+        "duration": 7200,
+        "uploadDate": "2025-02-01T10:00:00Z",
+        "visibility": "public",
+        "creatorId": "user_002",
+        "modules": [
+            {
+                "id": "module_ts_intro",
+                "title": "Introduction",
+                "order": 1
+            },
+            {
+                "id": "module_ts_types",
+                "title": "Basic Types",
+                "order": 2
+            },
+            {
+                "id": "module_ts_interfaces",
+                "title": "Interfaces and Classes",
+                "order": 3
+            }
+        ],
+        "instructorId": "user_002",
+        "difficultyLevel": "beginner",
+        "contentIds": [
+            "ep_ts101_01",
+            "ep_ts101_02",
+            "ep_ts101_03"
+        ]
+    },
+    {
+        "id": "course_ng_adv",
+        "title": "Advanced Next.js Patterns",
+        "description": "Deep dive into Server Components, caching, and more.",
+        "type": "course",
+        "thumbnailUrl": "/thumbnails/ng_adv.jpg",
+        "duration": 10800, 
+        "uploadDate": "2025-03-10T12:00:00Z",
+        "visibility": "public",
+        "creatorId": "user_004",
+        "modules": [
+            {
+                "id": "module_ng_rsc",
+                "title": "React Server Components",
+                "order": 1
+            },
+            {
+                "id": "module_ng_caching",
+                "title": "Caching Strategies",
+                "order": 2
+            }
+        ],
+        "instructorId": "user_004",
+        "difficultyLevel": "advanced",
+        "contentIds": [
+            "ep_ng_adv_01",
+            "ep_ng_adv_02"
+        ]
+    }
+]

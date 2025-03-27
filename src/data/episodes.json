@@ -1,0 +1,67 @@
+[
+    {
+        "id": "ep_ai_01",
+        "title": "What is Machine Learning?",
+        "description": "Episode 1: The fundamentals.",
+        "type": "episode",
+        "thumbnailUrl": "/thumbnails/ep_ai_01.jpg",
+        "duration": 610,
+        "uploadDate": "2025-03-01T10:00:00Z",
+        "visibility": "public",
+        "creatorId": "user_004",
+        "seriesId": "series_ai_intro",
+        "episodeNumber": 1
+    },
+    {
+        "id": "ep_ai_02",
+        "title": "Supervised vs Unsupervised Learning",
+        "description": "Episode 2: Key learning paradigms.",
+        "type": "episode",
+        "thumbnailUrl": "/thumbnails/ep_ai_02.jpg",
+        "duration": 755,
+        "uploadDate": "2025-03-08T10:00:00Z",
+        "visibility": "public",
+        "creatorId": "user_004",
+        "seriesId": "series_ai_intro",
+        "episodeNumber": 2
+    },
+    {
+        "id": "ep_ai_03",
+        "title": "Introduction to Neural Networks",
+        "description": "Episode 3: The building blocks.",
+        "type": "episode",
+        "thumbnailUrl": "/thumbnails/ep_ai_03.jpg",
+        "duration": 900,
+        "uploadDate": "2025-03-15T10:00:00Z",
+        "visibility": "unlisted",
+        "creatorId": "user_004",
+        "seriesId": "series_ai_intro",
+        "episodeNumber": 3
+    },
+    {
+        "id": "ep_ts101_01",
+        "title": "Welcome to TypeScript",
+        "description": "Lesson 1: Setting up and why TS.",
+        "type": "episode",
+        "thumbnailUrl": "/thumbnails/ep_ts101_01.jpg",
+        "duration": 450,
+        "uploadDate": "2025-02-01T10:05:00Z",
+        "visibility": "public",
+        "creatorId": "user_002",
+        "courseId": "course_ts101",
+        "episodeNumber": 1
+    },
+    {
+        "id": "ep_ts101_02",
+        "title": "Working with Basic Types",
+        "description": "Lesson 2: string, number, boolean, etc.",
+        "type": "episode",
+        "thumbnailUrl": "/thumbnails/ep_ts101_02.jpg",
+        "duration": 980,
+        "uploadDate": "2025-02-03T11:00:00Z",
+        "visibility": "public",
+        "creatorId": "user_002",
+        "courseId": "course_ts101",
+        "episodeNumber": 2
+    }
+]

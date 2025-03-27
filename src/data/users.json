@@ -1,0 +1,29 @@
+[
+    {
+        "id": "user_001",
+        "name": "Alice Admin",
+        "email": "alice@example.com",
+        "roleId": "role_admin",
+        "avatarUrl": "/avatars/alice.png"
+    },
+    {
+        "id": "user_002",
+        "name": "Bob Instructor",
+        "email": "bob@example.com",
+        "roleId": "role_instructor",
+        "avatarUrl": "/avatars/bob.png"
+    },
+    {
+        "id": "user_003",
+        "name": "Charlie Student",
+        "email": "charlie@example.com",
+        "roleId": "role_student",
+        "avatarUrl": "/avatars/charlie.png"
+    },
+    {
+        "id": "user_004",
+        "name": "Diana Instructor",
+        "email": "diana@example.com",
+        "roleId": "role_instructor"
+    }
+]

@@ -1,0 +1,14 @@
+[
+    {
+        "id": "series_ai_intro",
+        "title": "AI Concepts Explained",
+        "description": "A series breaking down core AI topics.",
+        "thumbnailUrl": "/thumbnails/ai_intro_series.jpg",
+        "creatorId": "user_004",
+        "episodeIds": [
+            "ep_ai_01",
+            "ep_ai_02",
+            "ep_ai_03"
+        ]
+    }
+]

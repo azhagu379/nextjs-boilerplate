@@ -1,0 +1,56 @@
+[
+    {
+        "id": "content_vlog01",
+        "title": "My Dev Setup 2025",
+        "description": "A quick tour of my development environment.",
+        "type": "vlog",
+        "thumbnailUrl": "/thumbnails/vlog01.jpg",
+        "duration": 305,
+        "uploadDate": "2025-03-15T09:00:00Z",
+        "visibility": "public",
+        "creatorId": "user_002",
+        "tags": [
+            "dev setup",
+            "vlog",
+            "productivity"
+        ]
+    },
+    {
+        "id": "content_song01",
+        "title": "The TypeScript Blues",
+        "description": "A song about static typing.",
+        "type": "song",
+        "thumbnailUrl": "/thumbnails/song01.jpg",
+        "duration": 182,
+        "uploadDate": "2025-03-20T11:30:00Z",
+        "visibility": "public",
+        "creatorId": "user_004"
+    },
+    {
+        "id": "content_movie01",
+        "title": "Code Runners",
+        "description": "In a world of legacy code...",
+        "type": "movie",
+        "thumbnailUrl": "/thumbnails/movie01.jpg",
+        "duration": 7200,
+        "uploadDate": "2024-12-01T18:00:00Z",
+        "visibility": "private",
+        "creatorId": "user_001"
+    },
+    {
+        "id": "content_standalone01",
+        "title": "Understanding Closures in 5 Minutes",
+        "description": "A quick explanation of JavaScript closures.",
+        "type": "standalone",
+        "thumbnailUrl": "/thumbnails/standalone01.jpg",
+        "duration": 300,
+        "uploadDate": "2025-03-22T14:00:00Z",
+        "visibility": "public",
+        "creatorId": "user_002",
+        "tags": [
+            "javascript",
+            "closures",
+            "tutorial"
+        ]
+    }
+]
