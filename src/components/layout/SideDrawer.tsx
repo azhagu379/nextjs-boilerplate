@@ -19,6 +19,9 @@ import {
   NavItem,
 } from "@/config/navigation";
 
+// Import Auth context hook
+import { useAuth } from "@/providers/AuthProviders";
+
 // --- Styled Components and Mixins (Moved Here) ---
 
 const openedMixin = (theme: Theme): CSSObject => ({
@@ -105,6 +108,8 @@ interface SideDrawerProps {
 }
 
 export function SideDrawer({ open, handleDrawerClose }: SideDrawerProps) {
+  const { isAuthenticated } = useAuth(); // Get authentication status
+
   return (
     <Drawer variant="permanent" open={open}>
       <DrawerHeader>
@@ -114,9 +119,16 @@ export function SideDrawer({ open, handleDrawerClose }: SideDrawerProps) {
         </IconButton>
       </DrawerHeader>
       <Divider />
+      {/* Main Nav Items - Always visible */}
       {renderNavList(mainNavItems, open)}
-      <Divider />
-      {renderNavList(secondaryNavItems, open)}
+
+      {/* Secondary Nav Items - Only visible if authenticated */}
+      {isAuthenticated && (
+        <>
+          <Divider />
+          {renderNavList(secondaryNavItems, open)}
+        </>
+      )}
     </Drawer>
   );
 }

@@ -1,16 +1,15 @@
 // src/app/layout.tsx
-import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
-import './globals.css';
-import { CustomThemeProvider } from '@/providers/CustomThemeProvider';
-// Import the new MainLayout component
-import { MainLayout } from '@/components/layout/MainLayout';
+import type { Metadata } from "next";
+import { Inter } from "next/font/google";
+import "./globals.css";
+import { CustomThemeProvider } from "@/providers/CustomThemeProvider";
+import { AuthProvider } from "@/providers/AuthProviders";
 
-const inter = Inter({ subsets: ['latin'] });
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: 'Tutorial App',
-  description: 'Programming and AI Tutorials',
+  title: "Tutorial App",
+  description: "Programming and AI Tutorials",
 };
 
 export default function RootLayout({
@@ -21,12 +20,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        {/* ThemeProvider wraps everything */}
         <CustomThemeProvider>
-          {/* MainLayout now wraps the page content (children) */}
-          <MainLayout>
-            {children}
-          </MainLayout>
+          <AuthProvider> {children}</AuthProvider>
         </CustomThemeProvider>
       </body>
     </html>
