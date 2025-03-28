@@ -6,7 +6,6 @@ import Link from "next/link";
 import {
   Box,
   Typography,
-  Grid,
   Card,
   CardMedia,
   CardContent,
@@ -17,6 +16,7 @@ import {
   Alert,
   Button,
 } from "@mui/material";
+import Grid from "@mui/material/Grid";
 import { PlayCircle, BookOpen, Lightbulb, Tv } from "lucide-react";
 import { Course, Series, VideoContent } from "@/types"; // Import necessary types
 
@@ -64,7 +64,7 @@ export function FeaturedContent({
           <Grid container spacing={3}>
             {courses.map((course) => (
               // Remember: No 'item' prop here
-              <Grid xs={12} sm={6} md={4} key={course.id}>
+              <Grid size={{ xs: 12, sm: 6, md: 4 }} key={course.id}>
                 <Card
                   sx={{
                     height: "100%",
@@ -138,7 +138,7 @@ export function FeaturedContent({
                 item // Renamed loop variable to avoid conflict if needed
               ) => (
                 // No 'item' prop
-                <Grid xs={12} sm={6} md={4} key={item.id}>
+                <Grid size={{ xs: 12, sm: 6, md: 4 }} key={item.id}>
                   <Card
                     sx={{
                       height: "100%",
@@ -224,7 +224,7 @@ export function FeaturedContent({
           <Grid container spacing={3}>
             {videos.map((video) => (
               // No 'item' prop
-              <Grid xs={12} sm={6} md={4} key={video.id}>
+              <Grid size={{ xs: 12, sm: 6, md: 4 }} key={video.id}>
                 <Card>
                   <CardContent>
                     <Chip
