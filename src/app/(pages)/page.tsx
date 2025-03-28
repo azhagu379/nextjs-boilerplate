@@ -48,13 +48,12 @@ export default async function HomePage() {
     <>
       {/* <Header /> */}
       <Box sx={{ mb: 4 }}>
-        {/* 1. Hero Section (Client Component) */}
         <HeroSection />
 
         {/* Container that overlaps the hero slightly */}
         <Container
           maxWidth="lg"
-          sx={{ mt: { xs: -4, md: -6 }, zIndex: 1, position: "relative" }}>
+          sx={{ mt: { xs: 4, md: -6 }, zIndex: 1, position: "relative" }}>
           {/* Render the new Client Component, passing data as props */}
           <FeaturedContent
             courses={featuredCourses}

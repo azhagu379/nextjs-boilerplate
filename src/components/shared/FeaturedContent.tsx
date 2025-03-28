@@ -41,10 +41,8 @@ export function FeaturedContent({
       elevation={3}
       sx={{
         p: { xs: 2, md: 4 },
-        // This function is now safe inside a Client Component
         borderRadius: (theme) => theme.shape.borderRadius,
       }}>
-      {/* Display errors/warnings */}
       {hasError && (
         <Alert severity="warning" sx={{ mb: 3 }}>
           Could not load all featured content. Data might be missing.
@@ -133,56 +131,50 @@ export function FeaturedContent({
             <Tv /> Popular Series
           </Typography>
           <Grid container spacing={3}>
-            {series.map(
-              (
-                item // Renamed loop variable to avoid conflict if needed
-              ) => (
-                // No 'item' prop
-                <Grid size={{ xs: 12, sm: 6, md: 4 }} key={item.id}>
-                  <Card
-                    sx={{
-                      height: "100%",
-                      display: "flex",
-                      flexDirection: "column",
-                    }}>
-                    <CardMedia
-                      component="img"
-                      height="160"
-                      image={item.thumbnailUrl || "/placeholder-series.jpg"}
-                      alt={item.title}
-                    />
-                    <CardContent sx={{ flexGrow: 1 }}>
-                      <Typography
-                        gutterBottom
-                        variant="h6"
-                        component="div"
-                        noWrap>
-                        {item.title}
-                      </Typography>
-                      <Typography
-                        variant="body2"
-                        color="text.secondary"
-                        sx={
-                          {
-                            /* Limit lines */
-                          }
-                        }>
-                        {item.description}
-                      </Typography>
-                    </CardContent>
-                    <CardActions>
-                      <Link href={`/series/${item.id}`} passHref legacyBehavior>
-                        <Button
-                          size="small"
-                          startIcon={<PlayCircle size={16} />}>
-                          Watch Series
-                        </Button>
-                      </Link>
-                    </CardActions>
-                  </Card>
-                </Grid>
-              )
-            )}
+            {series.map((item) => (
+              // No 'item' prop
+              <Grid size={{ xs: 12, sm: 6, md: 4 }} key={item.id}>
+                <Card
+                  sx={{
+                    height: "100%",
+                    display: "flex",
+                    flexDirection: "column",
+                  }}>
+                  <CardMedia
+                    component="img"
+                    height="160"
+                    image={item.thumbnailUrl || "/placeholder-series.jpg"}
+                    alt={item.title}
+                  />
+                  <CardContent sx={{ flexGrow: 1 }}>
+                    <Typography
+                      gutterBottom
+                      variant="h6"
+                      component="div"
+                      noWrap>
+                      {item.title}
+                    </Typography>
+                    <Typography
+                      variant="body2"
+                      color="text.secondary"
+                      sx={
+                        {
+                          /* Limit lines */
+                        }
+                      }>
+                      {item.description}
+                    </Typography>
+                  </CardContent>
+                  <CardActions>
+                    <Link href={`/series/${item.id}`} passHref legacyBehavior>
+                      <Button size="small" startIcon={<PlayCircle size={16} />}>
+                        Watch Series
+                      </Button>
+                    </Link>
+                  </CardActions>
+                </Card>
+              </Grid>
+            ))}
           </Grid>
         </Box>
       )}

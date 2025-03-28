@@ -1,4 +1,3 @@
-// src/components/shared/HeroSection.tsx
 "use client"; // Mark this as a Client Component
 
 import React from "react";

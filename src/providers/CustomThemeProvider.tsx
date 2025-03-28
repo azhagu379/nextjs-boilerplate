@@ -9,22 +9,20 @@ import React, {
   useEffect,
 } from "react";
 import { createTheme, Theme, ThemeOptions } from "@mui/material/styles";
-import { lightPalette, darkPalette } from "@/theme/palette"; // Import palettes
+import { lightPalette, darkPalette } from "@/theme/palette"; 
 import ThemeRegistry from "./ThemeRegistry";
 
-// Define common theme options (typography, shape, etc.) - customize as needed
 const commonThemeOptions: Partial<ThemeOptions> = {
   typography: {
-    fontFamily: '"Inter", "Roboto", "Helvetica", "Arial", sans-serif', // Example font stack
+    fontFamily: '"Inter", "Roboto", "Helvetica", "Arial", sans-serif', 
     h1: { fontSize: "2.5rem", fontWeight: 600 },
     h2: { fontSize: "2rem", fontWeight: 600 },
-    // ... other typography settings
+  
   },
   shape: {
-    borderRadius: 8, // Slightly more rounded corners for a modern feel
+    borderRadius: 8, 
   },
-  // You can add overrides for components here
-  // components: { MuiButton: { defaultProps: { disableElevation: true } } }
+
 };
 
 type ThemeMode = "light" | "dark";
@@ -34,9 +32,8 @@ interface ThemeContextType {
   toggleTheme: () => void;
 }
 
-// Create context with default values
 const ThemeContext = createContext<ThemeContextType>({
-  mode: "dark", // Default mode
+  mode: "dark", 
   toggleTheme: () => {
     console.log("ThemeProvider not yet mounted");
   },
@@ -49,16 +46,14 @@ export function CustomThemeProvider({
 }: {
   children: React.ReactNode;
 }) {
-  const [mode, setMode] = useState<ThemeMode>("light"); // Default to light
+  const [mode, setMode] = useState<ThemeMode>("light"); 
 
-  // Effect to read preference from localStorage on initial load (client-side only)
   useEffect(() => {
     try {
       const storedMode = localStorage.getItem("themeMode") as ThemeMode | null;
       if (storedMode) {
         setMode(storedMode);
       } else {
-        // Optional: Detect system preference if no explicit choice is stored
         const prefersDark =
           window.matchMedia &&
           window.matchMedia("(prefers-color-scheme: dark)").matches;
@@ -97,7 +92,3 @@ export function CustomThemeProvider({
     </ThemeContext.Provider>
   );
 }
-
-// --- Update ThemeRegistry to accept the theme object ---
-
-// src/providers/ThemeRegistry.tsx (MODIFY this existing file)
